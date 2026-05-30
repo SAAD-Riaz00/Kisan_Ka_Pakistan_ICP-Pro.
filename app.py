@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 st.title("🌐 Live HTML Renderer")
-st.write("<!DOCTYPE html>
+st.write("""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -2081,7 +2081,7 @@ loadWeather();
 renderPrices();
 </script>
 </body>
-</html>")
+</html>""")
 
 # 2. Create a side-by-side layout
 col1, col2 = st.columns(2)
