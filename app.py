@@ -1,15 +1,12 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# 1. Set up the page configuration
-st.set_page_config(
-    page_title="Live HTML Renderer", 
-    page_icon="🌐", 
-    layout="wide"
-)
-
+# 1. Page Setup
+st.set_page_config(page_title="Kisan Ka Pakistan", layout="wide")
 st.title("🌐 Live HTML Renderer")
-st.write("""<!DOCTYPE html>
+
+# 2. Store your code in a variable using TRIPLE quotes
+html_code = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -2081,26 +2078,9 @@ loadWeather();
 renderPrices();
 </script>
 </body>
-</html>""")
+</html>
+"""
 
-# 2. Create a side-by-side layout
-col1, col2 = st.columns(2)
-
-with col1:
-    st.header("📝 Input")
-    # Text area for the user to paste their code
-    html_input = st.text_area(
-        "Paste your code here:",
-        height=500,
-        placeholder="""<h1 style="color: blue;">Hello World!</h1>\n<p>This is a custom HTML preview.</p>"""
-    )
-
-with col2:
-    st.header("🖥️ Preview")
-    # 3. Render the HTML if the user has entered anything
-    if html_input:
-        # We wrap the output in a container to match the height of the text area
-        with st.container():
-            components.html(html_input, height=500, scrolling=True)
-    else:
-        st.info("Awaiting code... Paste some HTML on the left to see it live here.")
+# 3. RENDER the HTML (Do not use st.write here!)
+# The height parameter ensures your app has enough room to display
+components.html(html_code, height=850, scrolling=True)
