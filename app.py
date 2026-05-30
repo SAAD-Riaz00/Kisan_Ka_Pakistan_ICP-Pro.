@@ -2094,4 +2094,4 @@ renderPrices();
 """
 
 # 4. Render the HTML
-components.html(html_code, height=850, scrolling=True)
+components.html(html_code, scrolling=false)
