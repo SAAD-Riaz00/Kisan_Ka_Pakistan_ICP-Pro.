@@ -3,10 +3,22 @@ import streamlit.components.v1 as components
 
 # 1. Page Setup
 st.set_page_config(page_title="Kisan Ka Pakistan", layout="wide")
-st.title("🌐 Live HTML Renderer")
 
-# 2. Store your code in a variable using TRIPLE quotes
-html_code = """<!DOCTYPE html>
+# (The st.title line that was here has been removed!)
+
+# 2. Hide Streamlit's default header, menu, and footer for a native app look
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
+# 3. Store your HTML code
+html_code = """
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -2081,6 +2093,5 @@ renderPrices();
 </html>
 """
 
-# 3. RENDER the HTML (Do not use st.write here!)
-# The height parameter ensures your app has enough room to display
+# 4. Render the HTML
 components.html(html_code, height=850, scrolling=True)
