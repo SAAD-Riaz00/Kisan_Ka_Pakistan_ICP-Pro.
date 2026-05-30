@@ -4,17 +4,31 @@ import streamlit.components.v1 as components
 # 1. Page Setup
 st.set_page_config(page_title="Kisan Ka Pakistan", layout="wide")
 
-# (The st.title line that was here has been removed!)
+# 2. Advanced CSS to remove ALL margins, headers, and force full screen
+full_screen_css = """
+<style>
+    /* Hide Streamlit top header, menu, and footer */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
 
-# 2. Hide Streamlit's default header, menu, and footer for a native app look
-hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+    /* Remove all padding from the main app container */
+    .block-container {
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
+        max-width: 100% !important;
+    }
+
+    /* Force the iframe (your HTML) to exactly match the screen height */
+    iframe {
+        height: 100vh !important; 
+        border: none;
+    }
+</style>
+"""
+st.markdown(full_screen_css, unsafe_allow_html=True)
 
 # 3. Store your HTML code
 html_code = """
@@ -2094,4 +2108,5 @@ renderPrices();
 """
 
 # 4. Render the HTML
-components.html(html_code, scrolling=false)
+# We set scrolling=False because the CSS '100vh' handles the screen fit now
+components.html(html_code, scrolling=False)
